@@ -41,12 +41,10 @@ const ThumbnailTrending = ({show}: Props) => {
             setBookmark(docSnap.data()?.myBookmark)
             return docSnap.data()?.myBookmark
         }
-        console.log('update')
     }, [db])
 
     useEffect(() => {
         setAddedToList((bookmark as Movie[]).filter((result)=> result.id === show.id).length !==0)
-        console.log('done')
     },[handleBookmark])
     
     return (

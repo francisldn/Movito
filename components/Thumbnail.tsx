@@ -42,7 +42,6 @@ const Thumbnail = ({show}:Props) => {
             return docSnap.data()?.myBookmark
         }
         updateBookmark();
-        console.log('update2')
     },[db])
 
     useEffect(() => {
