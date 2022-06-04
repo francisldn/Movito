@@ -9,10 +9,10 @@ interface Props {
 const SearchPage = ({searchList, searchTitle}:Props) => {
 
     return (
-        <div className="mx-4 md:mx-6">
+        <div className="sm:mx-2 md:mx-6">
          <div className="mt-4">
              <h1 className="title">{`Found ${searchList?.length && searchList.length} search results for ${searchTitle}`}</h1>
-             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-x-4 mx-4">
+             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-x-4 w-screen lg:w-full">
              {
                  searchList && searchList?.map((show) => <Thumbnail key={show.id} show={show}/>)
              }
