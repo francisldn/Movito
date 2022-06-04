@@ -10,7 +10,7 @@ interface Props {
 
 const Home = ({trendingList, recommendedList, searchTitle}:Props) => {
     return (
-        <div className={`mx-2 md:mx-6 md:max-w-[calc(100vw_-_10rem)] ${searchTitle && "hidden"}`}>
+        <div className={`sm:mx-2 md:mx-6 md:max-w-[calc(100vw_-_10rem)] ${searchTitle && "hidden"}`}>
            <div>
                 <h1 className="title">Trending</h1>
                 <div className="flex overflow-x-scroll scrollbar-hide space-x-4 w-full">

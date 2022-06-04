@@ -32,22 +32,22 @@ const BookmarkedPage = ({searchTitle}:Props) => {
     },[user,db, docRef])
 
     return (
-        <div className={`mx-4 md:mx-6 ${searchTitle && "hidden"}`}>
+        <div className={`sm:mx-2 md:mx-6 ${searchTitle && "hidden"}`}>
             
            <div className="mt-4">
                 <h1 className="title">Bookmarked Movies</h1>
                 <p className={`flex flex-1 mx-5 mt-6 text-[#FC4747] ${bmMoviesList.length!==0 && "hidden"}`}>You do not have any movies bookmarked.</p>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-x-4 mx-4 md:">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-x-4">
                 {
                     bmMoviesList.map((show) => <Thumbnail key={(show as Movie).id} show={show}/>)
                 }
                 </div>
-            </div>)
+            </div>
             
             <div className="mt-4">
                 <h1 className="title">Bookmarked TV Series</h1>
                 {<p className={`flex flex-1 mx-5 mt-6 text-[#FC4747] ${bmTVList.length!==0 && "hidden"}`}>You do not have any TV series bookmarked.</p>}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-x-4 mx-4 md:">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-x-4 mx-4">
                 {
                     bmTVList.map((show) => <Thumbnail key={(show as Movie).id} show={show} />)
                 }
