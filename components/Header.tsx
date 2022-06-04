@@ -12,7 +12,7 @@ const Header = ({page, setPage}: HeaderProps) => {
     const {logout} = useAuth()
 
     return (
-        <header className="bg-[#161D2F] w-full h-[56px] lg:hidden">
+        <header className="fixed bg-[#161D2F] w-full h-[56px] lg:hidden">
            <div className="flex my-4 mx-4 md:mx-8">
                 <div className="w-[25px] h-[20px] cursor-pointer">
                     <Link href="/">
