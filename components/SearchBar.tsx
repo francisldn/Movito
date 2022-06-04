@@ -35,7 +35,7 @@ const Search = ({page, setPage,searchList, setSearchList, allList, searchTitle, 
     
     
     return (
-        <div className="flex mx-4 md:mx-8 space-x-5 max-w-[calc(100vw-14rem)] h-8 md:h-10 my-5 items-center">
+        <div className="flex mx-4 md:mx-8 space-x-5 max-w-[calc(100vw-14rem)] h-8 md:h-10 my-5 items-center mt-20">
             <div className="w-6 h-6">
                 <img src="/assets/icon-search.svg" alt="search" />
             </div>
