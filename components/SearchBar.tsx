@@ -1,5 +1,7 @@
-import { DocumentData } from "firebase/firestore";
+import { doc, DocumentData, getDoc } from "firebase/firestore";
 import { Dispatch, RefObject, SetStateAction, SyntheticEvent, useCallback, useEffect, useRef, useState } from "react";
+import { db } from "../firebase/firebaseConfig";
+import useAuth from "../hooks/useAuth";
 import { Movie } from "../movieType.typings";
 interface SearchProps {
     page: string;
@@ -12,7 +14,10 @@ interface SearchProps {
 }
 
 const Search = ({page, setPage,searchList, setSearchList, allList, searchTitle, setSearchTitle}: SearchProps) => {
-    
+    const [bookmark, setBookmark] = useState<Movie[]| Document[]>([])
+    const {user} = useAuth();
+    let id = user?.uid || '0'
+    const docRef = doc(db,"users",id!)
     const inputRef = useRef<HTMLInputElement | null>(null)
     
     const handleSearch = useCallback((value:string|null) => {
@@ -23,7 +28,7 @@ const Search = ({page, setPage,searchList, setSearchList, allList, searchTitle, 
         } else if(placeholder?.includes('tv series') && !placeholder?.includes('movies') && allList && searchTitle) {
             setSearchList(allList?.filter((show) => (show.category === 'TV Series') && (show.title.toLowerCase().includes(value?.toLowerCase()))))
         } else if(placeholder?.includes('bookmarked') && allList && searchTitle) {
-           setSearchList(allList?.filter((show) => (show.isBookmarked === true) && (show.title.toLowerCase().includes(value?.toLowerCase()))))
+           setSearchList((bookmark as Movie[]).filter((show) => (show.title.toLowerCase().includes((value as string).toLowerCase()))))
         } else if (allList && value) {
             setSearchList(allList?.filter((show) => show.title.toLowerCase().includes(value?.toLowerCase())))
         }
@@ -33,6 +38,15 @@ const Search = ({page, setPage,searchList, setSearchList, allList, searchTitle, 
         handleSearch(searchTitle)
     },[searchTitle])
     
+    useEffect(() => {
+        async function updateBookmark() {
+            const docSnap = await getDoc(docRef);
+            setBookmark(docSnap.data()?.myBookmark)
+            return docSnap.data()?.myBookmark
+        }
+        updateBookmark();
+    },[db, handleSearch])
+
     
     return (
         <div className="flex mx-4 md:mx-8 space-x-5 md:max-w-[calc(100vw-14rem)] h-8 md:h-10 my-5 items-center mt-20 lg:mt-6">
@@ -61,3 +75,7 @@ const Search = ({page, setPage,searchList, setSearchList, allList, searchTitle, 
 }
 
 export default Search;
+
+function docRef(docRef: any) {
+    throw new Error("Function not implemented.");
+}
