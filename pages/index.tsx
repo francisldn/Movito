@@ -1,86 +1,95 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Header from '../components/Header'
+import SearchBar from '../components/SearchBar'
+import { useState } from 'react';
+import HomePage from '../components/HomePage'
+import MoviesPage from '../components/MoviesPage'
+import TVPage from '../components/TVPage'
+import SearchPage from '../components/SearchPage'
+import BookmarkedPage from '../components/BookmarkedPage'
+import useAuth from '../hooks/useAuth'
+import { collection, DocumentData, getDocs } from 'firebase/firestore'
+import { db } from '../firebase/firebaseConfig'
+import {Movie} from '../movieType.typings';
+import HeaderSideBar from '../components/HeaderSideBar';
 
-const Home: NextPage = () => {
+interface PageType {
+  type:
+  |'Home'
+  |'Movies'
+  |'TV Series'
+  |'Bookmarked'
+  |'Search'
+}
+
+interface Props {
+  allList: Movie[] | DocumentData[];
+  movieList: Movie[] | DocumentData[];
+  tvSeriesList:Movie[] | DocumentData[];
+  recommendedList:Movie[] | DocumentData[];
+  trendingList: Movie[] | DocumentData[];
+}
+
+const Home = ({allList, movieList, tvSeriesList, recommendedList, trendingList}:Props) => {
+  const {loading} = useAuth()
+  const [page, setPage] = useState('Home')
+  const [searchList, setSearchList] = useState<Movie[] | DocumentData[] | null>(allList)
+  const [searchTitle, setSearchTitle] = useState<string | null>('')
+
+  if(loading) return null
+  
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col py-2">
       <Head>
-        <title>Create Next App</title>
+        <title>Entertainment Web App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header page={page} setPage={setPage}/>
+      <div className="flex w-screen">
+        <HeaderSideBar page={page} setPage={setPage}/>
+       <main className="flex w-screen flex-1 flex-col lg:ml-32">
+          <SearchBar page={page} setPage={setPage} searchList={searchList} setSearchList={setSearchList} searchTitle={searchTitle} setSearchTitle={setSearchTitle} allList={allList}/>
+          {page === 'Home' && <HomePage trendingList={trendingList} recommendedList={recommendedList} searchTitle={searchTitle}/>}
+          {page === 'Movies' && <MoviesPage movieList={movieList} searchTitle={searchTitle}/>}
+          {page === 'TV Series' && <TVPage tvSeriesList={tvSeriesList} searchTitle={searchTitle}/>}
+          {searchTitle 
+          && <SearchPage searchList={searchList!} searchTitle={searchTitle}/>
+          }
+          {page === 'Bookmarked' && <BookmarkedPage searchTitle={searchTitle}/>}
+        </main>
+      </div>
+      
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
     </div>
   )
 }
 
 export default Home
+
+export const getServerSideProps = async () => {
+  const colRef = collection(db, 'movies')
+  let movies = [] as DocumentData[]
+  const data = await getDocs(colRef).then((snapshot) => {
+    snapshot.docs.map((doc) => {
+      movies?.push({...doc.data(), id: doc.id})
+    })
+    return movies;
+  })
+  const movieList = data.filter((show) => show.category === 'Movie')
+  const tvSeriesList = data.filter((show) => show.category === 'TV Series')
+  const trendingList = data.filter((show) => show.isTrending === true)
+  const recommendedList = data.filter((show) => show.isTrending === false)
+  
+  return {
+    props: {
+      allList: data,
+      recommendedList: recommendedList,
+      movieList: movieList,
+      tvSeriesList: tvSeriesList,
+      trendingList: trendingList,
+    }
+  }
+  
+}

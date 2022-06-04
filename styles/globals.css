@@ -1,3 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    body {
+        @apply
+        bg-[#10141E]
+        text-white
+        font-['Outfit']
+        w-screen
+        overflow-x-hidden
+    }
+}
+
+@layer components {
+    .title {
+        @apply
+        !text-[20px]
+        md:!text-[32px]
+        !font-light
+        leading-6
+        py-4
+        ml-2
+        md:ml-4
+    }
+
+    .input {
+        @apply
+        bg-[#161D2F] 
+        text-[#FFFFFF] 
+        border-b-[#5A698F] 
+        border-b-2 
+        h-[37px] 
+        text-[15px] 
+        pl-3 
+        w-full
+        focus:placeholder:!text-transparent
+    }
+
+    .warning {
+        @apply
+        !text-[#FC4747]
+        !text-[14px]
+    }
+    .background-image {
+        @apply
+        min-w-[240px]
+        min-h-[140px]
+        md:min-w-[470px]
+        md:min-h-[230px]
+        transition-all
+        rounded-xl
+        mx-4
+        bg-cover
+        flex
+        flex-col 
+        w-full 
+        bg-no-repeat
+        box-border
+        pr-2
+        pt-2
+        md:pr-3
+        md:pt-3
+     }
+     
+     
+
+     .background-image-recommended {
+        @apply
+        w-[164px]
+        max-w-[220px]
+        min-h-[110px]
+        sm:w-[220px]
+        sm:max-w-[180px]
+        sm:min-h-[140px]
+        xl:min-w-[260px]
+        xl:w-[300px]
+        xl:max-w-[320px]
+        xl:min-h-[240px]
+        xl:max-h-[250px]
+        2xl:w-[330px]
+        2xl:max-w-[360px]
+        2xl:min-h-[260px]
+        transition-all
+        rounded-xl
+        mx-4
+        bg-cover
+        flex
+        flex-col 
+        bg-no-repeat
+        box-border
+        pr-2
+        pt-2
+        md:pr-3
+        md:pt-3
+     }
+
+}
+
+@media screen and (min-width:1150px) and (max-width:1400px) {
+    .background-image-recommended {
+       max-width: 220px;
+    }
+}
