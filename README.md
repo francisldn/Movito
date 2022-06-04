@@ -1,6 +1,10 @@
-# Frontend Mentor - Entertainment web app
+# Frontend Mentor - Movie web app
 
-![Design preview for the Entertainment web app coding challenge](./preview.jpg)
+<img src="/public/login.png" alt="login page">
+
+<img src="/public/movie-app.png" alt="movie-app">
+
+Frontend hosted on [Vercel](https://movie-app-chi-nine.vercel.app/)
 ## Welcome! 👋
 
 ## The challenge
