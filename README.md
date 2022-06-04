@@ -41,6 +41,8 @@ Data for the movie information is contained in the `data.json` file under public
 * Learning how to deal with API data flows in NextJS is also major thing which I learnt. NextJS has a certain workflow which differs from the normal React API rendering workflow (ie. via ``useEffect`` hook). I have to use ``getServerSideProps`` and ``getStaticProps`` for getting data from API. And the API rendering components only interact with pages, not other components. 
 ***Learn to love TailwindCSS***
 * Having used Tailwind CSS for the past 2 projects, I start to be more efficient in using this CSS utility tool which really saves me a lot of time. It is especially useful and convenient for creating responsive layout.  
+***React-Hook-Form for User Authentication and Input Validation***
+* Learnt how to use another great tool for creating form and validating user input - ``react-hook-form`` package. 
 
 ## How to use
 Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
