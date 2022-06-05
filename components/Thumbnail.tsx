@@ -60,6 +60,12 @@ const Thumbnail = ({show}:Props) => {
                         : `/assets/icon-bookmark-empty.svg`
                         } alt="bookmark" onClick={() => handleBookmark()}/>
                     </div>   
+                    <div className="box-border sm:w-[117px] sm:min-h-[48px] mx-auto sm:mt-[60px] mt-0 min-h-[40px] w-[100px] cursor-pointer flex gap-3 opacity-0 hover:opacity-100 hover:bg-opacity-30 rounded-3xl bg-white justify-center items-center">
+                        <div>
+                            <img src="/assets/icon-play.svg" alt=""/>
+                        </div>
+                        <span>Play</span>
+                    </div>
             </div>
             <div className="flex flex-col place-content-end h-full pb-3 pl-4 pt-2">
                 <div className="flex mb-0">
