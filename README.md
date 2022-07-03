@@ -1,6 +1,7 @@
 # Frontend Mentor - Movie web app
 
 ***Note: Sign in using a randomly created account or you may use the login account below:***
+<br />
 *Email Address: user1@gmail.com
 Password: 123456*
 
