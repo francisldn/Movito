@@ -1,4 +1,6 @@
-# Frontend Mentor - Movie web app
+# Movito
+Movito is an movie/entertainment app that allows user to view movie selection, search for movie and bookmark any movies that they like in their favourite list
+## ABOUT
 
 ***Note: Sign in using a randomly created account or you may use the login account below:***
 <br />
@@ -10,19 +12,23 @@ Password: 123456*
 <img src="/public/movie-app.png" alt="movie-app">
 
 Frontend hosted on [Vercel](https://movie-app-chi-nine.vercel.app/)
-## Welcome! 👋
 
-## The challenge
+## APP FEATURES
 User requirements:
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
 - Navigate between Home, Movies, TV Series, and Bookmarked Shows pages
 - Add/Remove bookmarks from all movies and TV series
 - Search for relevant shows on all pages
-- **Bonus**: Build this project as a full-stack application --> this requirement has been included with Firebase serving as the backend for user authentication and database
-- **Bonus**: If you're building a full-stack app, we provide authentication screen (sign-up/login) designs if you'd like to create an auth flow --> this requirement has been included in this app, so user can create an account and add movies to their favourite list
+- User authentication and storage of user bookmarked movies
 
-Data for the movie information is contained in the `data.json` file under public folder. The data has been uploaded to Firestore which serves as the backend of the app.
+### Tech Stacks
+* NextJS/React/Context API/Custom Hooks - frontend
+* Firebase - storage & user authentication
+* Styling - TailwindCSS
+* Typescript
+* RefiApp to upload data to Firebase
+
 ### Expected Behaviour
 - General
   - The navigation menu should be fixed to the left for larger screens. Use the "Desktop - Home" page in the design as a visual reference.
@@ -39,13 +45,6 @@ Data for the movie information is contained in the `data.json` file under public
   - This page should display all bookmarked shows from both categories
   - Any search input should search through all bookmarked shows
 
-### Tech Stacks
-* NextJS/React/Context API/Custom Hooks - frontend
-* Firebase - storage & user authentication
-* Styling - TailwindCSS
-* Typescript
-* RefiApp to upload data to Firebase
-
 ### Challenges Faced and My Learnings
 ***Firebase/Firestore for Auth and Storage***
 * Learning how to use Firebase/Firestore to do user authentication and CRUD operations is certainly a major learning point for me. 
@@ -59,14 +58,3 @@ Data for the movie information is contained in the `data.json` file under public
 * Having used Tailwind CSS for the past 2 projects, I start to be more efficient in using this CSS utility tool which really saves me a lot of time. It is especially useful and convenient for creating responsive layout.  
 ***React-Hook-Form for User Authentication and Input Validation***
 * Learnt how to use another great tool for creating form and validating user input - ``react-hook-form`` package. 
-
-## How to use
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-# or
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
