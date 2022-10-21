@@ -39,6 +39,13 @@ Data for the movie information is contained in the `data.json` file under public
   - This page should display all bookmarked shows from both categories
   - Any search input should search through all bookmarked shows
 
+### Tech Stacks
+* NextJS/React/Context API/Custom Hooks - frontend
+* Firebase - storage & user authentication
+* Styling - TailwindCSS
+* Typescript
+* RefiApp to upload data to Firebase
+
 ### Challenges Faced and My Learnings
 ***Firebase/Firestore for Auth and Storage***
 * Learning how to use Firebase/Firestore to do user authentication and CRUD operations is certainly a major learning point for me. 
