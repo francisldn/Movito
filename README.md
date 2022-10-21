@@ -45,7 +45,7 @@ User requirements:
   - This page should display all bookmarked shows from both categories
   - Any search input should search through all bookmarked shows
 
-### Challenges Faced and My Learnings
+## Challenges Faced and My Learnings
 ***Firebase/Firestore for Auth and Storage***
 * Learning how to use Firebase/Firestore to do user authentication and CRUD operations is certainly a major learning point for me. 
   * For initial data bulk upload to Firestore, while it is possible to write a NodeJS script to do this, to save time, I have used Refi App (https://refiapp.io/) to do the job. This app provides a really easy interface for bulk uploading data to Firestore and it is sync-ed to Firestore seamlessly. 
