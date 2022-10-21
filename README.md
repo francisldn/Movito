@@ -7,9 +7,7 @@ Movito is an movie/entertainment app that allows user to view movie selection, s
 *Email Address: user1@gmail.com
 Password: 123456*
 
-<img src="/public/login.png" alt="login page">
-
-<img src="/public/movie-app.png" alt="movie-app">
+<img src="/public/DeviceDisplay.png" alt="display-device">
 
 Frontend hosted on [Vercel](https://movito.vercel.app/)
 
