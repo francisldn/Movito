@@ -11,7 +11,7 @@ Password: 123456*
 
 <img src="/public/movie-app.png" alt="movie-app">
 
-Frontend hosted on [Vercel](https://movie-app-chi-nine.vercel.app/)
+Frontend hosted on [Vercel](https://movito.vercel.app/)
 
 ## APP FEATURES
 User requirements:
